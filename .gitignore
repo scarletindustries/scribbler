@@ -40,8 +40,3 @@ erl_crash.dump
 
 # macOS Finder metadata
 .DS_Store
-
-# The lockfile is regenerated once carder is reachable at the committed git ref.
-# Commit it as soon as `gleam deps download` records the resolved carder SHA — that pin
-# is what makes CI reproducible with a git dependency.
-manifest.toml

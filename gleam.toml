@@ -1,0 +1,26 @@
+name = "scribbler"
+version = "1.0.0"
+
+description = "The WebAssembly frontend for the carder compiler backend — wasm → carder IR → Core Erlang → BEAM."
+licences = ["Apache-2.0"]
+repository = { type = "github", user = "scarletindustries", repo = "scribbler" }
+links = [{ title = "Website", href = "https://scarlet.industries" }]
+
+[dependencies]
+# scribbler is a FRONTEND: it owns the WebAssembly binary/text format and lowers it into
+# carder's IR. Everything downstream of the IR — the optimizer, Core Erlang codegen, the
+# BEAM runtime — lives in carder and is consumed from here as an ordinary Gleam package.
+#
+# LOCAL DEVELOPMENT: point this at a carder checkout instead, e.g.
+#   carder = { path = "../carder" }
+# (never commit that form — a path dep records no checksum and CI has no sibling checkout)
+# `ref` is INTENT; the pin is the resolved commit recorded in manifest.toml, which is what a
+# fresh clone and CI actually build. Bump with `gleam deps download` and commit the lockfile.
+carder = { git = "https://github.com/scarletindustries/carder.git", ref = "main" }
+gleam_stdlib = ">= 1.0.0 and < 2.0.0"
+gleam_erlang = ">= 1.3.0 and < 2.0.0"
+argv = ">= 1.1.0 and < 2.0.0"
+simplifile = ">= 2.5.0 and < 3.0.0"
+
+[dev_dependencies]
+gleeunit = ">= 1.0.0 and < 2.0.0"

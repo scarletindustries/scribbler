@@ -14,10 +14,9 @@ links = [{ title = "Website", href = "https://scarlet.industries" }]
 # LOCAL DEVELOPMENT: point this at a carder checkout instead, e.g.
 #   carder = { path = "../carder" }
 # (never commit that form — a path dep records no checksum and CI has no sibling checkout)
-# NOTE: pinned to carder's extraction BRANCH, because the split has not landed on carder's
-# `main` yet. Once it does, change `ref` to "main" and re-run `gleam deps download` — the
-# resolved commit in manifest.toml is what CI actually builds, so the ref is intent, not the pin.
-carder = { git = "https://github.com/scarletindustries/carder.git", ref = "feat/extract-wasm-frontend" }
+# `ref` is INTENT; the pin is the resolved commit recorded in manifest.toml, which is what a
+# fresh clone and CI actually build. Bump with `gleam deps download` and commit the lockfile.
+carder = { git = "https://github.com/scarletindustries/carder.git", ref = "main" }
 gleam_stdlib = ">= 1.0.0 and < 2.0.0"
 gleam_erlang = ">= 1.3.0 and < 2.0.0"
 argv = ">= 1.1.0 and < 2.0.0"
